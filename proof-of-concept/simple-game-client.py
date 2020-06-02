@@ -6,14 +6,14 @@ import time
 def play_game_client(f, client_socket):
     while True:
         data = client_socket.recv(1024)
-        your_number = data.decode()
-        f.write('your_number = ' + your_number)
+        server_number = data.decode()
+        f.write('server_number = ' + server_number + '\n')
 
-        my_number = str(random.randrange(1,3))
-        print (my_number)
-        f.write('my_number = ' + my_number)
-        client_socket.sendall(my_number.encode())
-        print('sent  ', my_number)
+        client_server = str(random.randrange(1,10))
+        print (client_server)
+        f.write('client_server = ' + client_server + '\n')
+        client_socket.sendall(client_server.encode())
+        print('sent  ', client_server)
 
 
         data = client_socket.recv(1024)
@@ -27,7 +27,7 @@ def play_game_client(f, client_socket):
         
         client_socket.sendall('okay'.encode())
 
-        f.write('server says ' + data.decode())
+        f.write('server says ' + data.decode() + '\n')
 
         
 
@@ -43,11 +43,15 @@ GAME_NUMBER = os.environ['GAME']
 f = open("/tmp/games/log_client_" + GAME_NUMBER + ".txt", 'w')
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect((HOST, PORT))
 
-f.write('GAME ' + GAME_NUMBER + ' started')
+while client_socket.connect_ex((HOST, PORT)) != 0:
+    time.sleep(1)
+
+
+f.write('-------------------------------------------\n')
+f.write('GAME ' + GAME_NUMBER + ' Client\'s log.' + '\n')
 play_game_client(f, client_socket)
-f.write('GAME ' + GAME_NUMBER + ' finished')
+f.write('GAME ' + GAME_NUMBER + ' Client\'s log finished' + '\n')
 
 client_socket.close()
 f.close()

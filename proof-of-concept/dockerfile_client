@@ -2,6 +2,6 @@ FROM python
 
 WORKDIR /app
 
-COPY echo-client.py echo-client.py 
+COPY simple-game-client.py simple-game-client.py 
 
-RUN chmod 774 echo-client.py
+RUN chmod 774 simple-game-client.py

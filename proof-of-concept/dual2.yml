@@ -1,0 +1,33 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "2"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "2"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+
