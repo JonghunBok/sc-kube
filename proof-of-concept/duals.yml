@@ -1,0 +1,257 @@
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "1"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "1"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "2"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "2"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "3"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "3"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "4"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "4"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "5"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "5"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "6"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "6"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "7"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "7"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sc-poc-2
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: sc-poc-server
+        image: jonghunbok/dummy-game:server
+        command: ['python', '/app/simple-game-server.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "8"
+      - name: sc-poc-client
+        image: jonghunbok/dummy-game:client
+        command: ['python', '/app/simple-game-client.py']
+        volumeMounts:
+        - mountPath: '/tmp/games'
+          name: sc-poc-pvc
+        env:
+        - name: GAME
+          value: "8"
+      volumes:
+        - name: sc-poc-pvc
+          persistentVolumeClaim:
+            claimName: log-pv-claim
