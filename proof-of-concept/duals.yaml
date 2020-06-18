@@ -1,13 +1,9 @@
-{%- set params = [ 
-  { "GAME": "00000001"}
-]%}
-{%- for p in params %}
-{%- set GAME = p["GAME"] %}
+
 ---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "sc-poc-{{ GAME }}"
+  name: "sc-poc-00000001"
 spec:
   template:
     spec:
@@ -15,16 +11,16 @@ spec:
       containers:
       - name: "sc-poc-1"
         image: "starcraft:game-1.0.4"
-        command: ['/app/play_bot.sh', "--game", "GAME_{{ GAME }}", "--name", "PurpleWave", "--race", "Z", "--lan", "--join" ]
+        command: ['/app/play_bot.sh', "--game", "GAME_00000001", "--name", "PurpleWave", "--race", "Z", "--lan", "--join" ]
         volumeMounts:
         - mountPath: "/app/logs"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/logs_1"
+          subPath: "games/GAME_00000001/logs_1"
           readOnly: false
 
         - mountPath: "/app/sc/Errors"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/crashes_1"
+          subPath: "games/GAME_00000001/crashes_1"
           readOnly: false
 
         - mountPath: "/app/sc/bwapi-data/BWTA"
@@ -39,7 +35,7 @@ spec:
 
         - mountPath: "/app/sc/bwapi-data/write"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/write_1"
+          subPath: "games/GAME_00000001/write_1"
           readOnly: false
 
         - mountPath: "/app/sc/maps"
@@ -59,7 +55,7 @@ spec:
         - name: NTH_PLAYER
           value: "1"
         - name: "GAME_NAME"
-          value: "GAME_{{ GAME }}"
+          value: "GAME_00000001"
         - name: "MAP_NAME"
           value: "/app/sc/maps/sscai/(2)Benzene.scx"
         - name: "GAME_TYPE"
@@ -161,16 +157,16 @@ spec:
 
       - name: sc-poc-0
         image: "starcraft:game-1.0.4"
-        command: ['/app/play_bot.sh', "--game", "GAME_{{ GAME }}", "--name", "PurpleWave", "--race", "P", "--lan", "--host", "--map", '"/app/sc/maps/sscai/(2)Benzene.scx"' ]
+        command: ['/app/play_bot.sh', "--game", "GAME_00000001", "--name", "PurpleWave", "--race", "P", "--lan", "--host", "--map", '"/app/sc/maps/sscai/(2)Benzene.scx"' ]
         volumeMounts:
         - mountPath: "/app/logs"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/logs_0"
+          subPath: "games/GAME_00000001/logs_0"
           readOnly: false
 
         - mountPath: "/app/sc/Errors"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/crashes_0"
+          subPath: "games/GAME_00000001/crashes_0"
           readOnly: false
 
         - mountPath: "/app/sc/bwapi-data/BWTA"
@@ -185,7 +181,7 @@ spec:
 
         - mountPath: "/app/sc/bwapi-data/write"
           name: "sc-poc-pvc"
-          subPath: "games/GAME_{{ GAME }}/write_0"
+          subPath: "games/GAME_00000001/write_0"
           readOnly: false
 
         - mountPath: "/app/sc/maps"
@@ -205,7 +201,7 @@ spec:
         - name: NTH_PLAYER
           value: "0"
         - name: "GAME_NAME"
-          value: "GAME_{{ GAME }}"
+          value: "GAME_00000001"
         - name: "MAP_NAME"
           value: "/app/sc/maps/sscai/(2)Benzene.scx"
         - name: "GAME_TYPE"
@@ -309,4 +305,3 @@ spec:
         - name: "sc-poc-pvc"
           persistentVolumeClaim:
             claimName: "log-pv-claim"
-{%- endfor %}
